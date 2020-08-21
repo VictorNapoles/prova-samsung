@@ -1,0 +1,10 @@
+feign:
+    currency:
+        name: currency-service
+        url: https://cellolatam.cellologistics.com.br/sds-devs-evaluation/evaluation/currency
+    quotation:
+        name: quotation-service
+        url: https://cellolatam.cellologistics.com.br/sds-devs-evaluation/evaluation/quotation
+    doc:
+        name: doc-service
+        url: https://cellolatam.cellologistics.com.br/sds-devs-evaluation/evaluation/docs
