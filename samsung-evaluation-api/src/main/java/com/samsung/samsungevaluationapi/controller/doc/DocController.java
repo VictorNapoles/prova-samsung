@@ -48,8 +48,8 @@ public class DocController {
     @GetMapping("search")
     public ResponseEntity<?> search(@RequestParam(required = false, defaultValue = "") String documentNumber, 
                                     @RequestParam(required = false, defaultValue = "")String currencyCode, 
-                                    @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate startDate, 
-                                    @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate endDate){
+                                    @RequestParam(required = false) @DateTimeFormat(pattern="ddMMyyyy") LocalDate startDate, 
+                                    @RequestParam(required = false) @DateTimeFormat(pattern="ddMMyyyy") LocalDate endDate){
 
         List<FullDocDto> result = searchFullDocs.execute(documentNumber, currencyCode, startDate, endDate);
         

@@ -3,6 +3,7 @@ package com.samsung.samsungevaluationapi.controller.doc.dto;
 import java.time.LocalDate;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.samsung.samsungevaluationapi.usecase.dto.FullDocDto;
 
 import org.springframework.beans.BeanUtils;
@@ -11,6 +12,7 @@ public class FullDocResponseDto {
 
     private String documentNumber;    
     
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate documentDate;
 
     private String currencyCode;

@@ -1,5 +1,7 @@
 package com.samsung.samsungevaluationapi.usecase;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,10 +63,18 @@ public class SearchFullDocs {
                 values.put(currency.getCurrencyCode(), doc.getDocumentValue());
             }else{
                 QuotationClientResponseDto quotation = getQuotation(quotations, doc, currency);
-                values.put(currency.getCurrencyCode(), doc.getDocumentValue() * Double.valueOf(quotation.getCotacao()));
+                values.put(currency.getCurrencyCode(), getQuotationValue(doc, quotation));
             }
         }
         return values;
+    }
+
+    private double getQuotationValue(FullDocDto doc, QuotationClientResponseDto quotation) {
+        
+        BigDecimal docValue = BigDecimal.valueOf(doc.getDocumentValue());
+        BigDecimal quotationValue = BigDecimal.valueOf(Double.valueOf(quotation.getCotacao()));
+
+        return docValue.multiply(quotationValue).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
     }
 
     private QuotationClientResponseDto getQuotation(List<QuotationClientResponseDto> quotations, FullDocDto doc, CurrencyClientResponseDto c) {
